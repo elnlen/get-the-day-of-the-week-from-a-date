@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>
+年月日から曜日を求める get the day of the week from a date
+</title>
+<style>
+body {background-color:tan;}
+.home {text-align:center;}
+.subheading {border-bottom:2px solid black;}
+.title {border-bottom:5px solid black;}
+</style>
+</head>
+<body>
+<h2 class="home"><a href="https://elnlen.github.io">elnlen.github.io</a></h1>
+<h1 class="title">年月日から曜日を求める get the day of the week from a date</h1>
+<input type="date" id="date">
+<p>曜日：<span id="dayOfWeek"></span></p>
+
+<h2 class="subheading">きっかけ</h2>
+<p>今日電池交換した腕時計の日付合わせをして、ふと作りたくなった。</p>
+<h2 class="subheading">使い方</h2>
+<ol>
+	<li>
+		日付を選択する
+	</li>
+	<li>曜日が出力される
+	</li>
+</ol>
+
+<h2 class="subheading">実装方法</h2>
+<p>カレンダーはHTML標準の<code>input type="date"</code>を使った。spanで出力用の場所を確保し、<code>addEventListener</code>で<code>'change'</code>にして値に変更があった時にtarget.valueで上書きする。
+<p><code>Date()</code>はDateオブジェクトを返す。
+<p>今回は曜日が分かる<code>getDay()</code>を使うためにDateオブジェクトにしないといけないっぽい。</p>
+<p>曜日名を入れたdayOfWeekという配列を使って曜日名を出力する。</p>
+
+<h2 class="subheading">参考元</h2>
+<a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Date/getDay">https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Date/getDay</a>
+<p>ほぼAIの要約見た。mdnのサイト見るより理解しやすかった。特にgetDay()の戻り値がdateオブジェクトということ</p>
+
+<h2 class="subheading">更新履歴</h2>
+<dl>
+	<dt>9/10</dt>
+	<dd>2時間くらいで制作&amp;公開</dd>
+</dl>
+
+<p style="text-align:right;">last modified time:<span id="lm"></span>
+<script>
+const lm = document.getElementById("lm");
+lm.textContent = document.lastModified;
+let date = 0;
+let dayOfWeek = document.getElementById("dayOfWeek");
+const selectedDate = document.getElementById("date");
+
+const dayNames = ["日曜日","月曜日","火曜日","水曜日","木曜日","金曜日","土曜日"];
+
+selectedDate.addEventListener('change', (e) => {
+selectedDate.textContent = e.target.value;
+date = new Date(selectedDate.textContent);
+dayOfWeek.textContent = dayNames[date.getDay()];
+});
+</script>
+</body>
+</html>
