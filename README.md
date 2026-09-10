@@ -1,1 +1,2 @@
-# day-of-the-week-from-date
+# get the day of the week from a date
+冠詞はつけよう
